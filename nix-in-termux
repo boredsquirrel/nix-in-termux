@@ -36,7 +36,7 @@
 PLAYGROUND="$HOME/.nix"
 DIVE_SCRIPT="$PLAYGROUND/nix-powered"
 TERMUX_BIN="/data/data/com.termux/files/usr/bin"
-
+VER="2.32.4"
 
 
 oops() {
@@ -73,12 +73,12 @@ if [ ! -x "$DIVE_SCRIPT" ]; then
 		*) oops "sorry, there is no binary distribution of Nix for your platform";;
 	esac
 
-	url="https://nixos.org/releases/nix/nix-2.2.1/nix-2.2.1-$system.tar.bz2"
+	url="https://nixos.org/releases/nix/nix-$VER/nix-$VER-$system.tar.bz2"
 
-	tarball="$tmpDir/$(basename "$tmpDir/nix-2.2.1-$system.tar.bz2")"
-	#tarball="$HOME/nix-2.2.1-$system.tar.bz2"
+	tarball="$tmpDir/$(basename "$tmpDir/nix-$VER-$system.tar.bz2")"
+	#tarball="$HOME/nix-$VER-$system.tar.bz2"
 
-	echo "downloading Nix 2.2.1 binary tarball for $system from '$url' to '$tmpDir'..."
+	echo "downloading Nix binary tarball for $system from '$url' to '$tmpDir'..."
 	$TERMUX_BIN/wget "$url" -O "$tarball" || oops "failed to download '$url'"
 
         hash2="$(sha256sum -b "$tarball" | cut -c1-64)"
